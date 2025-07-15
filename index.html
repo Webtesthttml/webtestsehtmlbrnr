@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRNR DPC Kabupaten Bogor - Digital & Dinamis</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-color: #d42e3c;
+            --primary-blue: #0d3f11;
+            --secondary-blue: #264d1a;
+            --accent-cyan: #66ff00;
+            --text-light: #f0f0f0;
+            --text-muted-light: #a0b9a4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            transition: background-color 0.4s ease;
+        }
+        .navbar.transparent {
+            background-color: transparent !important;
+        }
+        .navbar.solid {
+            background-color: rgba(13, 63, 17, 0.85) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--accent-cyan);
+        }
+
+        /* --- Swiper Hero Slider --- */
+        .hero-slider {
+            width: 100%;
+            height: 100vh;
+        }
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .slide-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .slide-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--accent-cyan) !important;
+        }
+
+        /* --- Sections --- */
+        .section-padding { padding: 80px 0; }
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 4rem;
+        }
+        .bg-dark-section { background-color: var(--secondary-blue); }
+
+        /* --- Glassmorphism Card --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-cyan);
+        }
+        .glass-card .card-icon {
+            font-size: 3.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Stats Counter --- */
+        .stats-card {
+            background: linear-gradient(135deg, #09ff00, #0a7e23);
+            color: white;
+            border-radius: 1rem;
+            padding: 3rem;
+        }
+        #memberCounter {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        /* --- Floating Buttons --- */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-cyan);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 229, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        #backToTopBtn {
+            display: none; /* Hidden by default */
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top transparent">
+        <div class="container">
+            <img src="Logo 2.png" alt="logo" style="width:64px; height:64px;">
+
+            <a class="navbar-brand fw-bold" href="#"> BRNR KAB. BOGOR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kegiatan.html">Kegiatan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="galeri.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="struktur.html">Struktur</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-sm btn-outline-light ms-3" href="login.html">Login</a>
+                     </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="swiper hero-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content" data-aos="fade-up">
+                    <h1>Bergerak Bersama, Membangun Bangsa</h1>
+                    <p class="lead my-4">Solid, tangguh, dan terpercaya dalam setiap pengabdian untuk Kabupaten Bogor.</p>
+                    <a href="#layanan" class="btn btn-primary btn-lg" style="background-color: var(--accent-cyan); border:none; color: var(--primary-blue); font-weight: bold;">Jelajahi Layanan</a>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Transformasi Digital Relawan</h1>
+                    <p class="lead my-4">Memanfaatkan teknologi untuk koordinasi dan aksi yang lebih efektif dan efisien.</p>
+                    <a href="kegiatan.html" class="btn btn-primary btn-lg" style="background-color: var(--accent-cyan); border:none; color: var(--primary-blue); font-weight: bold;">Lihat Kegiatan</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <section id="layanan" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Layanan Digital Terpadu</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card">
+                        <i class="bi bi-people-fill card-icon"></i>
+                        <h5 class="fw-bold mb-3">Data Anggota</h5>
+                        <p class="text-muted-light">Kelola dan lihat seluruh data anggota terdaftar secara digital.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card">
+                        <i class="bi bi-images card-icon"></i>
+                        <h5 class="fw-bold mb-3">Galeri Kegiatan</h5>
+                        <p class="text-muted-light">Dokumentasi foto dan video dari berbagai kegiatan sosial.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card">
+                        <i class="bi bi-calendar-check-fill card-icon"></i>
+                        <h5 class="fw-bold mb-3">Informasi Kegiatan</h5>
+                        <p class="text-muted-light">Informasi akurat mengenai kegiatan yang akan datang.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-dark-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title text-start">Realisasi Program & Jangkauan</h2>
+                    <p class="text-muted-light mb-4">Kami bangga dengan pencapaian dan pertumbuhan komunitas kami. Setiap anggota adalah pilar kekuatan dalam setiap aksi sosial yang kami lakukan di Kabupaten Bogor.</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-diagram-3-fill fs-2 me-3 text-white"></i>
+                        <div>
+                            <h6 class="text-white fw-bold">Struktur Organisasi</h6>
+                            <p class="text-muted-light small mb-0">Lihat struktur kepengurusan dari DPC hingga PAC.</p>
+                        </div>
+                    </div>
+                     <div class="d-flex align-items-center">
+                        <i class="bi bi-google-play fs-2 me-3 text-white"></i>
+                        <div>
+                            <h6 class="text-white fw-bold">Aplikasi KTAD</h6>
+                            <p class="text-muted-light small mb-0">Unduh aplikasi Super Aps resmi kami.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="stats-card text-center">
+                        <p class="mb-2">Total Anggota Terdaftar</p>
+                        <div id="memberCounter">0</div>
+                        <p class="mt-2">Calon relawan terdaftar pada Gerakan Nasional BRNR.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <p class="text-center text-muted-light">&copy; 2025 BRNR DPC Kabupaten Bogor. Didesain ulang dengan semangat digital.</p>
+        </div>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="#" id="backToTopBtn" class="floating-btn"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Initialize AOS (Animate on Scroll)
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+
+            // 2. Initialize Swiper Slider
+            const swiper = new Swiper('.hero-slider', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+
+            // 3. Navbar Style Change on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('solid');
+                    navbar.classList.remove('transparent');
+                } else {
+                    navbar.classList.remove('solid');
+                    navbar.classList.add('transparent');
+                }
+            });
+
+            // 4. Back to Top Button
+            const backToTopBtn = document.getElementById('backToTopBtn');
+             window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            // 5. CountUp Animation
+            const memberCounter = document.getElementById('memberCounter');
+            const countUp = new CountUp(memberCounter, 16995, { duration: 3 });
+            
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    countUp.start();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
+            
+            observer.observe(memberCounter);
+        });
+    </script>
+</body>
+</html>
